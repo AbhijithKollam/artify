@@ -42,14 +42,14 @@ function EditProfile({ profile }) {
     }
     const handleUpdate = async (e) => {
         e.preventDefault();
-        const { artistName, email, phone, address, numUpload, profileImage, id} = profileDetails;
+        const { artistName, email, phone, address, numUpload, profileImage, id } = profileDetails;
         if (!artistName || !email || !phone || !address || !numUpload || !id) {
             Swal.fire({
                 title: 'Done!',
                 text: 'Please ill the form completely',
                 icon: 'info',
                 // confirmButtonText: 'Cool'
-              })
+            })
             // alert("Please fill the form completely")
         }
         else {
@@ -77,11 +77,11 @@ function EditProfile({ profile }) {
                         text: 'Profile Uploaded Successfully',
                         icon: 'success',
                         // confirmButtonText: 'Cool'
-                      })
+                    })
                     // alert("Profile uploaded successfully")
                     setEditProfileResponse(result)
                     handleClose();
-                    console.log("edit response",editProfileResponse);
+                    console.log("edit response", editProfileResponse);
 
                 }
                 else {
@@ -104,11 +104,11 @@ function EditProfile({ profile }) {
                         text: 'Profile Uploaded Successfully',
                         icon: 'success',
                         // confirmButtonText: 'Cool'
-                      })
+                    })
                     // alert("Profile uploaded successfully")
                     setEditProfileResponse(result)
                     handleClose();
-                    console.log("edit response",editProfileResponse);
+                    console.log("edit response", editProfileResponse);
 
 
                 }
@@ -134,7 +134,7 @@ function EditProfile({ profile }) {
                 </Modal.Header>
                 <Modal.Body>
                     <Row>
-                        <Col md={6} lg={6}>
+                        {/* <Col md={6} lg={6}>
                             <label htmlFor="projectImageuploads" className='m-5'>
                                 <input
                                     onChange={(e) => { setProfileDetails({ ...profileDetails, profileImage: e.target.files[0] }) }}
@@ -142,7 +142,17 @@ function EditProfile({ profile }) {
                                 <img src={preview ? preview : `${BASE_URL}/uploads/${profile.profileImage}`}
                                     height={"200px"} alt="" className='p-3' />
                             </label>
+                        </Col> */}
+                        <Col md={6} lg={6}>
+                            <label htmlFor="projectImageUploads" className='m-5'>
+                                <input
+                                    onChange={(e) => { setProfileDetails({ ...profileDetails, profileImage: e.target.files[0] }) }}
+                                    type="file" id='projectImageUploads' />
+                                {preview ? <img src={preview} height={"200px"} alt="" className='p-3' /> :
+                                    <img src={`${BASE_URL}/uploads/${profile.profileImage}`} height={"200px"} alt="" className='p-3' />}
+                            </label>
                         </Col>
+
                         <Col md={6} lg={6} className='text-xl grid gap-1'>
                             <input
                                 value={profileDetails.artistName} onChange={(e) => { setProfileDetails({ ...profileDetails, artistName: e.target.value }) }}
